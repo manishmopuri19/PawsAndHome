@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetAdopt - NGO Master Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ngodashboardcss.css">
+    <link rel="stylesheet" href="createpost.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+
+    <nav class="sidebar">
+        <div class="sidebar-logo">PawsAndHomes <small>NGO PANEL</small></div>
+        <ul class="sidebar-menu">
+            <li class="active" onclick="showSection('profile-sec')"><i class="fas fa-user-circle"></i> My Details</li>
+            <li onclick="showSection('stray-reports-sec')"><i class="fas fa-bullhorn"></i> Reported Strays</li>
+            <li onclick="showSection('manage-pets-sec')"><i class="fas fa-paw"></i> My Pets Post</li>
+            <li onclick="showSection('manage-docs-sec')"><i class="fas fa-file-alt"></i> My Docs Post</li>
+            <li onclick="showSection('new-post-sec')"><i class="fas fa-plus-square"></i> Create New Post</li>
+        </ul>
+        <a href="home.html" class="back-home"><i class="fas fa-arrow-left"></i> Home</a>
+    </nav>
+
+    <main class="main-content">
+
+        <div class="stats-container">
+            <div class="stat-box s-orange">
+                <h3 id="count-pets">0</h3>
+                <p>Pets Posted</p>
+            </div>
+            <div class="stat-box s-purple">
+                <h3 id="count-docs">0</h3>
+                <p>Docs Shared</p>
+            </div>
+            <div class="stat-box s-green">
+                <h3 id="count-rescued">0</h3>
+                <p>Strays Rescued</p>
+            </div>
+            <div class="stat-box s-blue">
+                <h3 id="count-adoptions">0</h3>
+                <p>Adopted Pets</p>
+            </div>
+        </div>
+
+        <section id="profile-sec" class="dash-section active">
+            <div class="profile-card">
+                <div class="box-header">
+                    <h2>NGO Profile</h2>
+                    <button class="edit-btn" id="editProfileBtn"><i class="fas fa-unlock"></i> Edit Profile</button>
+                </div>
+                <form id="profileForm" class="dash-form">
+                    <div class="form-grid">
+                        <div class="form-group"><label>NGO Name</label><input type="text" value="Happy Paws NGO" disabled></div>
+                        <div class="form-group"><label>Email</label><input type="email" value="ngo@example.com" disabled></div>
+                        <div class="form-group"><label>Helpline</label><input type="tel" value="+91 9800000000" disabled></div>
+                        <div class="form-group"><label>Location</label><input type="text" value="Mumbai" disabled></div>
+                    </div>
+                    <div id="profileActions" class="form-actions" style="display:none; margin-top:20px;">
+                        <button type="submit" class="save-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="stray-reports-sec" class="dash-section">
+            <h2>Nearby Reports</h2>
+            <div class="manage-grid" id="strayReportsGrid">
+                <div class="manage-card stray-card">
+                    <img src="https://images.unsplash.com/photo-1541591419107-bb5e172c5897?w=300">
+                    <div class="manage-info">
+                        <h3>Injured Stray</h3>
+                        <p><i class="fas fa-map-pin"></i> Block 5, Central Park</p>
+                        <div class="card-controls">
+                            <a href="tel:911" class="btn-call">Contact Reporter</a>
+                            <select class="rescue-status-toggle" onchange="updateRescueCount(this)">
+                                <option value="pending">Pending</option>
+                                <option value="rescued">Rescued ✅</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <section id="new-post-sec" class="dash-section">
+    <div class="post-sliding-container" id="postContainer">
+        
+        <div class="post-form-container doc-post-container">
+            <form class="elegant-form">
+                <h1 class="form-title">Share Resource</h1>
+                <p class="form-subtitle">Upload guides, medical tips, or legal templates</p>
+                
+                <div class="input-bar">
+                    <i class="fas fa-file-alt"></i>
+                    <input type="text" placeholder="Document Title (e.g., Puppy Care 101)" required />
+                </div>
+                
+                <div class="input-bar">
+                    <i class="fas fa-th-list"></i>
+                    <select required>
+                        <option value="" disabled selected>Select Category</option>
+                        <option>Health & Nutrition</option>
+                        <option>Training Guides</option>
+                        <option>Legal/Adoption Forms</option>
+                        <option>NGO Reports</option>
+                    </select>
+                </div>
+
+                <div class="custom-file-upload">
+                    <input type="file" id="docFile" accept=".pdf" hidden />
+                    <label for="docFile" class="upload-area pdf-style">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Upload PDF Document</span>
+                        <small id="docFileName">No file chosen</small>
+                    </label>
+                </div>
+                <button class="btn-primary-lg">Publish to Library</button>
+            </form>
+        </div>
+
+        <div class="post-form-container pet-post-container">
+            <form class="elegant-form">
+                <h1 class="form-title">List for Adoption</h1>
+                <p class="form-subtitle">Provide details to help them find a family</p>
+                
+                <div class="form-row-elegant">
+                    <div class="input-bar"><i class="fas fa-paw"></i><input type="text" placeholder="Pet Name" required></div>
+                    <div class="input-bar"><i class="fas fa-dog"></i><input type="text" placeholder="Breed/Species" required></div>
+                </div>
+
+                <div class="form-row-elegant">
+                    <div class="input-bar"><i class="fas fa-birthday-cake"></i><input type="text" placeholder="Age (e.g., 2 Years)"></div>
+                    <div class="input-bar">
+                        <i class="fas fa-venus-mars"></i>
+                        <select required>
+                            <option value="" disabled selected>Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-bar">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" placeholder="Current Location (City/Area)">
+                </div>
+
+                <div class="custom-file-upload">
+                    <input type="file" id="petPhoto" accept="image/*" hidden />
+                    <label for="petPhoto" class="upload-area">
+                        <i class="fas fa-camera"></i>
+                        <span>Upload High-Quality Photo</span>
+                        <small id="petFileName">No photo chosen</small>
+                    </label>
+                </div>
+                <button class="btn-primary-lg">Post for Adoption</button>
+            </form>
+        </div>
+
+        <div class="post-overlay-container">
+            <div class="post-overlay">
+                <div class="post-overlay-panel post-overlay-left">
+                    <h1>Registering a Pet?</h1>
+                    <p>Switch to animal adoption listings</p>
+                    <button class="ghost-pill" id="showPetForm">Switch to Pet</button>
+                </div>
+                <div class="post-overlay-panel post-overlay-right">
+                    <h1>Sharing a Doc?</h1>
+                    <p>Switch to the resource library</p>
+                    <button class="ghost-pill" id="showDocForm">Switch to Doc</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <script src="Script/stray.js"></script>
+    <script type="module" src="Script/uiScript.js"></script>
+</body>
+</html>

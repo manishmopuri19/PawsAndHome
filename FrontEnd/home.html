@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PetAdopt - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">PawsAndHomes</div>
+        <ul class="nav-links">
+            <li><a href="home.html" class="active">Home</a></li>
+            <li><a href="pets.html" id="petsNavLink">Pets</a></li>
+            <li><a href="doc.html" id="docNavLink">Docs</a></li>
+            <li><a href="contact.html" id="contactNavLink">Contact</a>
+            <li><a href="reportstray.html"id="reportstrayNavLink">Report Stray</a>
+            </li>
+        </ul>
+        <div class="user-profile" id="profileDropdown">
+    <i class="fas fa-user-circle"></i>
+    <div class="dropdown-content" id="myDropdown">
+        <div class="user-status">
+            <p>Welcome!</p>
+            <span id="userNameDisplay">Guest User</span>
+        </div>
+        <hr>
+        <a href="dashboard.html" id="AdopterdashboardRequest"><i class="fas fa-th-large"></i> Dashboard</a>
+        <a href="index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+</div>
+    </nav>
+
+    <header class="hero">
+        <h1>Welcome to PetAdopt</h1>
+        <p>Every pet deserves a loving home. Join us today.</p>
+        <div class="hero-btns">
+            <a href="pets.html" class="btn btn-primary">View Pets for Adoption</a>
+            <a href="reportstray.html" class="btn btn-secondary">Report Stray Dog</a>
+        </div>
+    </header>
+
+    <div class="section-container">
+        <div class="section-header">
+            <h2>Featured Pets</h2>
+            <a href="pets.html" style="color:#ff4b2b; text-decoration:none; font-weight:600;">View More →</a>
+        </div>
+        <div id="homePetsGrid" class="grid-layout">
+            </div>
+            <div class="section-container">
+</div>
+
+<div class="section-container" style="background-color: #fff; margin-top: 40px;">
+    <div class="section-header">
+        <h2>Guidelines & Resources</h2>
+        <a href="doc.html" class="view-more-link">View All Docs →</a>
+    </div>
+    <div id="docsGrid" class="grid-layout">
+        </div>
+</div>
+    </div>
+    
+
+    <script type="module" src="Script/uiScript.js"></script>
+    <script type="module" src="Script/HomeScript.js"></script>
+    
+</body>
+</html>

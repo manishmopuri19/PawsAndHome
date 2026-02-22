@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetAdopt | Report a Stray</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">PawsAndHomes</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="pets.html " id="petsNavLink">Pets</a></li>
+            <li><a href="doc.html">Docs</a></li>
+            <li><a href="contact.html">Contact</a>
+            <li><a href="reportstray.html" class="active">Report Stray</a></li>
+        </ul>
+    <div class="user-profile" id="profileDropdown">
+    <i class="fas fa-user-circle"></i>
+    <div class="dropdown-content" id="myDropdown">
+        <div class="user-status">
+            <p>Welcome!</p>
+            <span id="userNameDisplay">Guest User</span>
+        </div>
+        <hr>
+        <a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a>
+        <a href="index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+</div>
+    </nav>
+
+    <main class="section-container report-page-layout">
+        
+        <div class="report-form-container">
+            <div class="form-header">
+                <h1>Emergency Report</h1>
+                <p>Spotted an animal in distress? Fill the details below. Our partner NGOs will be notified instantly based on your location.</p>
+            </div>
+
+            <form id="strayReportForm" class="elegant-form">
+                <div class="input-bar">
+                    <i class="fas fa-notes-medical"></i>
+                    <select id="strayCondition" required>
+                        <option value="" disabled selected>Condition of Animal</option>
+                        <option value="Critical">Critical (Immediate medical attention)</option>
+                        <option value="Infected">Infected / Skin Disease</option>
+                        <option value="Injured">Injured / Broken Bone</option>
+                        <option value="Hungry">Malnourished / Weak</option>
+                    </select>
+                </div>
+
+                <div class="input-bar">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="strayLocation" placeholder="Exact Location (e.g., Near City Mall, Gate 2)" required>
+                </div>
+
+                <div class="input-bar">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="userPhone" placeholder="Your Contact Number (for NGO to call you)" required>
+                </div>
+
+                <div class="input-bar">
+                    <i class="fas fa-align-left"></i>
+                    <textarea id="strayDesc" placeholder="Describe the situation... (e.g., Dog is limping, hiding under a car)" rows="4"></textarea>
+                </div>
+
+                <div class="custom-file-upload">
+                    <input type="file" id="strayImgInput" accept="image/*" hidden />
+                    <label for="strayImgInput" class="upload-area">
+                        <i class="fas fa-camera"></i>
+                        <span id="strayImgName">Click to Upload Photo</span>
+                        <small>Photos help NGOs prepare the right medical kit</small>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary-lg">Broadcast Emergency Alert</button>
+            </form>
+        </div>
+
+        <div class="report-info-sidebar">
+            <div class="info-card rescue-stats">
+                <h3>Live Network Status</h3>
+                <div class="status-item">
+                    <span class="dot green"></span>
+                    <p><strong>14</strong> NGOs Online in your area</p>
+                </div>
+                <div class="status-item">
+                    <span class="dot pulse"></span>
+                    <p><strong>3</strong> Rescues currently in progress</p>
+                </div>
+            </div>
+
+            <div class="info-card guidelines">
+                <h3>Quick Guidelines</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Stay with the animal if safe.</li>
+                    <li><i class="fas fa-check"></i> Do not feed them milk (many are lactose intolerant).</li>
+                    <li><i class="fas fa-check"></i> Keep a safe distance if the animal is aggressive.</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+
+    <script type="module" src="Script/uiScript.js"></script>
+</body>
+</html>

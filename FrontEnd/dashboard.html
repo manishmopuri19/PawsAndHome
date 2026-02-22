@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetAdopt - Master Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="createpost.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body" id="Adopterdashboard">
+
+    <nav class="sidebar">
+        <div class="sidebar-logo">PawsAndHomes</div>
+        <ul class="sidebar-menu">
+            <li class="active" onclick="showSection('profile-sec',this)"><i class="fas fa-user-circle"></i> My Details</li>
+            <li onclick="showSection('adoptions-sec',this)"><i class="fas fa-heart"></i> My Adoptions</li>
+            <li onclick="showSection('manage-pets-sec',this)"><i class="fas fa-paw"></i> My Pets Post</li>
+            <li onclick="showSection('manage-docs-sec',this)"><i class="fas fa-file-alt"></i> My Docs Post</li>
+            <li onclick="showSection('new-post-sec',this)"><i class="fas fa-plus-square"></i> Create New Post</li>
+            
+        </ul>
+        <a href="home.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </nav>
+
+    <main class="main-content">
+
+        <section id="profile-sec" class="dash-section active">
+            <div class="profile-card">
+                <div class="box-header">
+                    <h2>Account Profile</h2>
+                    <button class="edit-btn" id="editProfileBtn"><i class="fas fa-unlock"></i> Edit Details</button>
+                </div>
+                <form id="profileForm" class="dash-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name / NGO Title</label>
+                            <input type="text" value="Happy Paws Rescue" disabled id="pName">
+                        </div>
+                        <div class="form-group">
+                            <label>Official Email</label>
+                            <input type="email" value="contact@happypaws.org" disabled id="pEmail">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <input type="tel" value="+91 88888 77777" disabled id="pTel">
+                        </div>
+                        <div class="form-group">
+                            <label>Operational City</label>
+                            <input type="text" value="Bangalore, KA" disabled id="pLoc">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Bio / Description</label>
+                            <input type="text" value="Dedicated to rescuing and rehoming street animals." disabled id="pBio">
+                        </div>
+                    </div>
+                    <div id="cancelEdit" class="form-actions" style="display:none;">
+                        <button type="button" class="reset-btn" id="resetProfileBtn">Cancel</button>
+                        <button type="submit" class="save-btn">Save Information</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="adoptions-sec" class="dash-section">
+            <h2>My Adopted Pets</h2>
+            <div id="adoptionsGrid" class="manage-grid">
+                </div>
+        </section>
+        <section id="manage-pets-sec" class="dash-section">
+    <h2>My Pets Post</h2>
+    <div id="userpostedGrid" class="manage-pets-grid">
+                </div>
+</section>
+
+<section id="manage-docs-sec" class="dash-section">
+    <h2>My Docs Post</h2>
+</section>
+
+        <section id="new-post-sec" class="dash-section">
+            <div class="post-sliding-container" id="postContainer">
+                
+                <div class="post-form-container doc-post-container">
+                    <form class="elegant-form" id="docsUpload">
+                        <h1 class="form-title">Share Resource</h1>
+                        <div class="input-bar"><i class="fas fa-heading"></i><input type="text" placeholder="Document Title" id="title"></div>
+                        <div class="input-bar"><i class="fas fa-tag"></i><input type="text" placeholder="Sub-Topic" id="description"></div>
+                         <div class="input-bar">
+                            <i class="fas fa-layer-group"></i>
+                            <select id="category">
+                                <option value="" disabled selected>category</option>
+                                <option value="thoughts">thoughts</option>
+                                <option value="documentary">documentary</option>
+                                <option value="research">research</option>
+                                <option value="story">story</option>
+                            </select>
+                            </div>
+                        <div class="custom-file-upload">
+                    <input type="file" id="docCoverInput" accept="image/*" hidden />
+                    <label for="docCoverInput" class="upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Upload Pet Photo (JPG/PNG)</span>
+                        <small id="docCoverFile">No file chosen</small>
+                    </label>
+                </div>
+                        <div class="custom-file-upload">
+                            <input type="file" id="docFile" accept=".pdf" hidden />
+                            <label for="docFile" class="upload-area pdf-style">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Upload Document (PDF only)</span>
+                                <small id="docFileName">No file chosen</small>
+                            </label>
+                        </div>
+                        <button class="btn-primary-lg">Publish to Library</button>
+                    </form>
+                </div>
+
+                <div class="post-form-container pet-post-container">
+                    <form class="elegant-form" id="CreatePostForm">
+                        <h1 class="form-title">List a Pet</h1>
+                        <div class="input-bar"><i class="fas fa-paw"></i><input type="text" placeholder="Pet Name" id="petName"></div>
+                        <div class="input-bar"><i class="fas fa-dog"></i><input type="text" placeholder="Breed" id="petBreed"></div>
+                        <div class="input-bar"><i class="fas fa-birthday-cake"></i><input type="number" placeholder="age" id="petAge"></div>
+                            <div class="input-bar">
+                            <i class="fas fa-venus-mars"></i>
+                            <select id="petGender">
+                                <option value="" disabled selected>Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                            </div>
+                            <div class="input-bar">
+                            <i class="fas fa-paw"></i>
+                            <select id="petSpecies">
+                                <option value="" disabled selected>Species</option>
+                                <option value="cat">Cat</option>
+                                <option value="dog">Dog</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            </div>
+
+                        <div class="custom-file-upload">
+                            <input type="file" id="petPhoto" accept="image/*" hidden />
+                            <label for="petPhoto" class="upload-area">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Upload Pet Photo (JPG/PNG)</span>
+                                <small id="petFileName">No file chosen</small>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary-lg">List for Adoption</button>
+                    </form>
+                </div>
+
+                <div class="post-overlay-container">
+                    <div class="post-overlay">
+                        <div class="post-overlay-panel post-overlay-left">
+                            <h1>Post a Pet?</h1>
+                            <button class="ghost-pill" id="showPetForm">Switch to Pet</button>
+                        </div>
+                        
+                        <div class="post-overlay-panel post-overlay-right">
+                            <h1>Share a Doc?</h1>
+                            <button class="ghost-pill" id="showDocForm">Switch to Doc</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="Script/uiScript.js"></script>
+    <script type="module" src="Script/userDashBoard.js"></script>
+    <script>
+        // FILE UPLOAD PREVIEW (REAL-WORLD BEHAVIOR)
+function setupFilePreview(inputId, fileNameId) {
+    const input = document.getElementById(inputId);
+    const fileName = document.getElementById(fileNameId);
+
+    if (!input || !fileName) return;
+
+    input.addEventListener("change", () => {
+        if (input.files.length > 0) {
+            fileName.textContent = input.files[0].name;
+        } else {
+            fileName.textContent = "No file chosen";
+        }
+    });
+}
+
+// PET PHOTO
+setupFilePreview("petPhoto", "petFileName");
+
+// DOC COVER IMAGE
+setupFilePreview("docCover", "docCoverFile");
+
+// PDF DOCUMENT
+setupFilePreview("docFile", "docFileName");
+    </script>
+</body>
+</html>
