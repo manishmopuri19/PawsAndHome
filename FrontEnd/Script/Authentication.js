@@ -76,7 +76,7 @@ document.getElementById("loginForm").addEventListener("submit",async(e)=>{
         localStorage.setItem("token", data.token);
 
         alert("login successful....");
-        window.location.href="/FrontEnd/home.html";
+        window.location.href = "home.html";
     } catch (error) {
         console.error(error);
         alert("server error : try again");
