@@ -83,3 +83,6 @@ document.getElementById("loginForm").addEventListener("submit",async(e)=>{
     }
 });
 
+async function socketConnection(){
+    
+}

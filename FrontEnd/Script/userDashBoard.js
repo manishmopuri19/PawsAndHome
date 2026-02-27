@@ -1,5 +1,5 @@
 // userDashBoard.js
-const API_URL = "http://localhost:8000/api";
+const API_URL = "https://pawsandhome.onrender.com/api";
 import { renderUserAdoptions,renderUserPosts,renderUserpostedDoc } from "./renderPets.js";
 
 

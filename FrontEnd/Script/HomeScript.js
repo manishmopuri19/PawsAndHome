@@ -1,5 +1,5 @@
 import { renderPets,renderFullDocs } from "./renderPets.js";
-const API_URL = "http://localhost:8000/api/pets";
+const API_URL = "https://pawsandhome.onrender.com/api/pets";
 
 document.addEventListener("DOMContentLoaded",()=>{
     gethomeAnimal();

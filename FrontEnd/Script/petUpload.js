@@ -1,6 +1,6 @@
 import { renderPets } from "./renderPets.js";
 //uploading the pets for adoption
-const API_URL = "http://localhost:8000/api/pets";
+const API_URL = "https://pawsandhome.onrender.com/api/pets";
 
 // get all pets rendering
 let petsData=[];

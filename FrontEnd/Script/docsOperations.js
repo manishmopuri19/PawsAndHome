@@ -1,6 +1,6 @@
 import { renderFullDocs } from "./renderPets.js";
 
-const API_URL = "http://localhost:8000/api/docs";
+const API_URL = "https://pawsandhome.onrender.com/api/docs";
 
 
 
