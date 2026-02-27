@@ -1,6 +1,6 @@
 // userDashBoard.js
 const API_URL = "http://localhost:8000/api";
-import { renderUserAdoptions,renderUserPosts } from "./renderPets.js";
+import { renderUserAdoptions,renderUserPosts,renderUserpostedDoc } from "./renderPets.js";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -213,7 +213,7 @@ function setupCreatePostForm() {
             alert("Pet posted successfully");
             loadAdoptions();
         } catch {
-            alert("Server error");
+            console.log(error);
         }
     });
 }
@@ -229,13 +229,20 @@ export async function userpostPets() {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
         });
+
+        if(!response.ok){
+            return alert("failed to fetch");
+        }
         const data=await response.json();
+        console.log(data);
         const grid = document.getElementById("userpostedGrid");
+
+
         if (!grid) return;
 
         grid.innerHTML = "";
 
-        if (!pets.length) {
+        if (!data.length) {
             grid.innerHTML = "<p>No posts yet</p>";
             return;
         }
@@ -244,7 +251,32 @@ export async function userpostPets() {
 
 
     } catch (error) {
-        
+        console.log(error);
     }
     
+}
+
+//load user posted doc's
+
+export async function userpostDoc(){
+    try {
+        const response=await fetch(`${API_URL}/userDashboard/userpostedDoc`,{
+            method:"GET",
+            headers:{
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        const data= await response.json();
+        console.log(data);
+        const grid=document.getElementById('userdocGrid');
+        if(!data.length){
+            grid.innerHTML = "<p>No posts yet</p>";
+            return;
+        }
+
+        renderUserpostedDoc('userdocGrid',null,data);
+    } catch (error) {
+        console.log(error);
+    }
 }

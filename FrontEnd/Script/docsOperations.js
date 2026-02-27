@@ -14,8 +14,6 @@ document.addEventListener("DOMContentLoaded",loadAllDocs);
 async function loadAllDocs(){
 
    try {
-    
-    
     const res=await fetch(`${API_URL}/getAllDocs`,{
         method:"GET",
         headers:{

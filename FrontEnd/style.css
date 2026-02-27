@@ -577,31 +577,55 @@ nav {
     background: #fff;
 }
 
-/* MANAGE CARDS (My Pets/Adoptions) */
+/* MANAGE CARDS (My Pets/Adoptions) *//* 1. Unified Grid Layout: This covers ALL your containers */
+/* --- THE GRID --- */
 .manage-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* Force 3 columns */
     gap: 25px;
+    margin-top: 20px;
 }
 
-.manage-card {
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    transition: 0.3s;
-}
-
-.manage-card:hover {
-    transform: translateY(-5px);
-}
-
-.manage-card img {
-    width: 90px;
-    height: 90px;
+/* --- THE CARD --- */
+.pet-card, .doc-item-card {
+    background: #fff;
     border-radius: 20px;
-    object-fit: cover;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eee;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
+
+.pet-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+.pet-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+/* --- STATUS BADGES --- */
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.status-active { background: #dcfce7; color: #166534; }  /* Green */
+.status-pending { background: #fef9c3; color: #854d0e; } /* Yellow */
+.status-adopted { background: #dbeafe; color: #1e40af; } /* Blue */
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) { .manage-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .manage-grid { grid-template-columns: 1fr; } }
 
 /* THE SLIDING CONTAINER - Clean & Curved */
 .post-sliding-container {

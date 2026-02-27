@@ -1,5 +1,6 @@
 // uiScript.js
-import { loadAdoptions } from "./userDashBoard.js";
+
+import { loadAdoptions, userpostPets,userpostDoc } from "./userDashBoard.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -50,6 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if(sectionId==="manage-pets-sec"){
             userpostPets();
+        }
+        if(sectionId==="manage-docs-sec"){
+            userpostDoc();
         }
     };
 

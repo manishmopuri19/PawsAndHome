@@ -71,7 +71,9 @@ export const getAllUserPostPets=async (req,res)=>{
         const userPosts={
         postedBy:req.user._id
     }
+    console.log(userPosts)
     const data=await pets.find(userPosts).select("name age status breed images species");
+    console.log(data)
 
     if(!data) return res.status(404).json({message:"pets not found"});
     return res.status(200).json(data);
@@ -79,18 +81,4 @@ export const getAllUserPostPets=async (req,res)=>{
      return res.status(500).json({message:"internal server error"});   
     }
 
-}
-
-export const getAllUserPostDocs=async(req,res)=>{
-    try {
-        const userDocs={
-            uploadedBy:req.user._id
-        }
-        const data=await documents.find(userDocs).select("title description category image document");
-        if(!data) return res.status(404).json({message:"docs not found"});
-
-        return res.status(200).json(data);
-    } catch (error) {
-        return res.status(500).json({message:"internal server error"});
-    }
 }

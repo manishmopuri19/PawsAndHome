@@ -24,7 +24,7 @@ const usersSchema=new mongoose.Schema(
         },
         mobile:String,
         location:String,
-        bio:S8tring,
+        bio:String,
 
         isVerified:{
             type:Boolean,
