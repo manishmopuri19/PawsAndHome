@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000/api/auth";
+const API_URL = "https://pawsandhome.onrender.com/api/auth";
 
 //registration
 document.getElementById("registerForm").addEventListener("submit", async(e)=>{
