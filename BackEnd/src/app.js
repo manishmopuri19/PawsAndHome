@@ -7,9 +7,20 @@ import cors from "cors";
 const app = express();
 
 
+const allowedOrigins = [
+  "http://127.0.0.1:5500",
+  "https://pawsandhomes.netlify.app"
+];
+
 app.use(cors({
-    origin: true,
-    credentials: true
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
 
 
