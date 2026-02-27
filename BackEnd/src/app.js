@@ -9,7 +9,7 @@ const app = express();
 
 app.use(cors({
   origin: [
-    "https://pawsandhomes.netlify.app"
+   process.env.Cors_Origin
   ]
 }));
 
