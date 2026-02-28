@@ -3,6 +3,7 @@ import petRouter from "./routers/petRouter.js";
 import authRouter from "./routers/authRouter.js";
 import docRouter from "./routers/docRouter.js";
 import userRouter from "./routers/userRouter.js";
+import contactRouter from "./routers/contactRouter.js";
 import cors from "cors";
 const app = express();
 
@@ -23,6 +24,6 @@ app.use("/api/auth",authRouter)
 app.use("/api/pets",petRouter)
 app.use("/api/docs",docRouter)
 app.use("/api/userDashboard",userRouter)
-
+app.use("api/reportAdmin",contactRouter)
 
 export default app;

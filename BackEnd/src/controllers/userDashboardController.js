@@ -1,7 +1,7 @@
 import {users} from "../model/users.js";
 import { pets } from "../model/pets.js";
 import { documents } from "../model/documents.js";
-
+import { contact } from "../model/contact.js";
 //getting user profile
 export const getuserDetails=async(req,res)=>{
     try {
@@ -47,10 +47,10 @@ export const getUserDocs=async(req,res)=>{
 
 export const updateProfile=async(req,res)=>{
     try {
-        const {location,bio}=req.body;
+        const {name,email,mobile,location,bio}=req.body;
         const updated=await users.findByIdAndUpdate(
             req.user._id,{
-                location,bio
+               name,email,mobile,location,bio
         }, {
                 // new: true,
                 runValidators: true
@@ -81,4 +81,22 @@ export const getAllUserPostPets=async (req,res)=>{
      return res.status(500).json({message:"internal server error"});   
     }
 
+}
+
+//user report
+
+export const reportAdmin=async(req,res)=>{
+    try {
+        const {userName,email,subject,Message}=req.body;
+
+        if(!userName || !email || !subject || !Message) return res.status(401).json({message:"missing fields "});
+
+        const allowedSubject=["Adoption Inquiry","Technical Issue","NGO Partnership"];
+        const AddNote=await contact.create({userName,email,subject:allowedSubject.includes(subject)?role:others,Message})
+
+        return res.status(200).json({message:"posted successfully"})
+
+    } catch (error) {
+        res.status(500).json({message:"server error"});
+    }
 }
