@@ -1,5 +1,5 @@
 
-const API_URL = "https://pawsandhome.onrender.com/api/contact";
+const API_URL = "petsandhomesss@gmail.com";
 
 
 document.getElementById("contactForm").addEventListener("submit",async(e)=>{
@@ -19,7 +19,9 @@ document.getElementById("contactForm").addEventListener("submit",async(e)=>{
     try {
         const res= await fetch(`${API_URL}/reportAdmin`,{
             method:"POST",
+            
             headers:{
+                "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.getItem(token)}`
             },
 
