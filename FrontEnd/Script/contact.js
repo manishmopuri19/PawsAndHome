@@ -1,5 +1,5 @@
 
-const API_URL = "petsandhomesss@gmail.com";
+const API_URL = "https://pawsandhome.onrender.com/api/contact";
 
 
 document.getElementById("contactForm").addEventListener("submit",async(e)=>{
