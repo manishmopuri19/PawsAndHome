@@ -11,7 +11,7 @@ document.getElementById("contactForm").addEventListener("submit",async(e)=>{
         const note=document.getElementById("reportNote").value;
 
          const data={
-            name:name,
+            userName:name,
             email:email,
             subject:subject,
             Message:note
