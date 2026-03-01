@@ -24,6 +24,6 @@ app.use("/api/auth",authRouter)
 app.use("/api/pets",petRouter)
 app.use("/api/docs",docRouter)
 app.use("/api/userDashboard",userRouter)
-app.use("api/reportAdmin",contactRouter)
+app.use("api/contact",contactRouter)
 
 export default app;

@@ -3,6 +3,6 @@ import {reportAdmin} from "../controllers/userDashboardController.js"
 import { protect } from "../middleware/protect.js";
 const router=express.Router();
 
-router.post("/contactPost",protect,reportAdmin);
+router.post("/reportAdmin",protect,reportAdmin);
 
 export default router;

@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 
 export const registration=async(req,res)=>{
     
+ try {
     const name=req.body.name;
     const email=req.body.email;
     const mobile=req.body.mobile;
@@ -31,13 +32,17 @@ export const registration=async(req,res)=>{
         name:user.name,
         email:user.email
     }});
+ } catch (error) {
+    return res.status(500).json({message:"server error"});
+ }
     
 }
 
 //login
 
 export const login=async(req,res)=>{
-    const {email,password}=req.body;
+   try {
+     const {email,password}=req.body;
     if(!email || !password){
         return res.status(401).json({message:"missing fields!!!"});
     }
@@ -64,4 +69,7 @@ export const login=async(req,res)=>{
     }
     });
 
-};
+   } catch (error) {
+    res.status(500).json({message:"server error"});
+   }
+}

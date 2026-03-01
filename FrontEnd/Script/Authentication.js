@@ -31,16 +31,17 @@ document.getElementById("registerForm").addEventListener("submit", async(e)=>{
             },
             body: JSON.stringify(payload)
         });
-        const data=await res.json();
+
+        // const data=await res.json();
 
         if(!res.ok){
             alert("registration failed try again later");
             return;
         }
         alert("registration successful .....");
-        
 
     } catch (error) {
+
         console.error(error);
         alert("server error please try again later...");
     }
