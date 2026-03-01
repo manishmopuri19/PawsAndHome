@@ -53,6 +53,6 @@ const petsSchema=new mongoose.Schema({
 },
   { timestamps: true }
     
-)
+);
 
 export const pets=mongoose.model("pets",petsSchema);

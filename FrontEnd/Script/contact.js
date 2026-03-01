@@ -11,10 +11,10 @@ document.getElementById("contactForm").addEventListener("submit",async(e)=>{
         const note=document.getElementById("reportNote").value;
 
          const data={
-            userName,
-            email,
-            subject,
-            Message
+            name:name,
+            email:email,
+            subject:subject,
+            Message:note
         }
     try {
         const res= await fetch(`${API_URL}/reportAdmin`,{
@@ -22,7 +22,7 @@ document.getElementById("contactForm").addEventListener("submit",async(e)=>{
             
             headers:{
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem(token)}`
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
 
             body:JSON.stringify(data)

@@ -21,7 +21,7 @@ async function loadAllDocs(){
         }
     });
 
-   docData=await res.json();
+   const docData=await res.json();
    if(!docData) return alert("failed");
 
    renderFullDocs("fullDocsGrid",null,docData);

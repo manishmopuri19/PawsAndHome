@@ -92,7 +92,7 @@ export const reportAdmin=async(req,res)=>{
         if(!userName || !email || !subject || !Message) return res.status(401).json({message:"missing fields "});
 
         const allowedSubject=["Adoption Inquiry","Technical Issue","NGO Partnership"];
-        const AddNote=await contact.create({userName,email,subject:allowedSubject.includes(subject)?role:others,Message})
+        const AddNote=await contact.create({userName,email,subject: allowedSubject.includes(subject) ? subject : "others",Message})
 
         return res.status(200).json({message:"posted successfully"})
 

@@ -2,8 +2,6 @@ import { documents } from "../model/documents.js";
 import { users } from "../model/users.js";
 import { uploadPicsTocloudinary,uploadDocsTocloudinary } from "../util/uploadToCloud.js";
 
-
-
 //posting the document
 export const docCreate=async(req,res)=>{
 
