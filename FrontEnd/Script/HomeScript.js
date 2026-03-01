@@ -1,5 +1,5 @@
 import { renderPets,renderFullDocs } from "./renderPets.js";
-const API_URL = "https://pawsandhome.onrender.com/api/pets";
+const API_URL = "https://pawsandhome.onrender.com/api";
 
 document.addEventListener("DOMContentLoaded",()=>{
     gethomeAnimal();
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 async function gethomeAnimal(){
     try {
-        const response=await fetch(`${API_URL}/homeanimals`,{
+        const response=await fetch(`${API_URL}/pets/homeanimals`,{
             method:"GET",
             headers:{
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -23,7 +23,7 @@ async function gethomeAnimal(){
 
 async function getHomeDocs(){
     try {
-       const response=await fetch(`${API_URL}/homeDocs`,{
+       const response=await fetch(`${API_URL}/docs/getAllDocs`,{
         method:"GET",
         headers:{
             "Authorization": `Bearer ${localStorage.getItem("token")}`
