@@ -4,6 +4,7 @@ const API_URL = "https://pawsandhome.onrender.com/api/contact";
 
 document.getElementById("contactForm").addEventListener("submit",async(e)=>{
     
+    const form=document.getElementById("contactForm");
         e.preventDefault();
         const userName=document.getElementById("repoterName").value;
         const email=document.getElementById("repoterEmail").value;
@@ -30,9 +31,11 @@ document.getElementById("contactForm").addEventListener("submit",async(e)=>{
 
         if(!res.ok){
             return alert("server error");
+
         }
 
-        alert("Message sent succesfully")
+         alert("Message sent successfully");
+        form.reset();
 
     } catch (error) {
         console.log(error);
