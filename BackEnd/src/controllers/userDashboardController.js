@@ -91,9 +91,15 @@ export const reportAdmin=async(req,res)=>{
 
         if(!userName || !email || !subject || !Message) return res.status(401).json({message:"missing fields "});
 
+        console.log("successfully got data");
         const allowedSubject=["Adoption Inquiry","Technical Issue","NGO Partnership"];
-        const AddNote=await contact.create({userName,email,subject: allowedSubject.includes(subject) ? subject : "others",Message})
+        const AddNote=await contact.create({userName,email,subject: allowedSubject.includes(subject) ? subject : "others",Message});
+        
+        if(!AddNote){
 
+            return res.status(500).json({message:"something went wrong"});
+        }
+        console.log("posted")
         return res.status(200).json({message:"posted successfully"})
 
     } catch (error) {

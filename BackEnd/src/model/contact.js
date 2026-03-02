@@ -18,7 +18,6 @@ const contactSchema=new mongoose.Schema({
         type:String,
         required:true
     }
-
 });
 
 export const contact=mongoose.model("contact",contactSchema);
