@@ -69,22 +69,20 @@ export const searchByFilters=async(req,res)=>{
 };
 
 
-export const getAllPets = async (req, res) => {
+export const getAllPets=async(req, res) => {
   try {
-    const available = { status: "posted" };
+    const available = {status: "posted"};
     let result = null;
-
-    
     if (redis && redis.isOpen) {
       try {
-        const cachePets = await redis.get("all_pets");
+        const cachePets=await redis.get("all_pets");
         if (cachePets) {
           console.log("Serving from Redis Cache");
           return res.status(200).json(JSON.parse(cachePets));
         }
       } catch (cacheError) {
        
-        console.error("Redis Get Error:", cacheError);
+        console.error("Redis Get Error:",cacheError);
       }
     }
 
@@ -99,7 +97,7 @@ export const getAllPets = async (req, res) => {
     }));
 
    
-    if (redis && redis.isOpen && result.length > 0) {
+    if (redis && redis.isOpen && result.length>0) {
       await redis.setEx("all_pets", 3600, JSON.stringify(result));
     }
 
