@@ -51,16 +51,32 @@ export const createPet = async (req, res) => {
 export const searchByFilters=async(req,res)=>{
   const filters = req.query; 
 
+  const searchCache=`search${JSON.parse(filters)}`;
+
+  if(redis && redis.isOpen){
+    try{
+      const result =await redis.get(searchCache);
+
+      if(result){
+        res.status(200).json(JSON.parse(result));
+      }
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
   try{
     let query={status:"posted"};
 
-    if(filters.species) query.species=filters.species;
+    if(filters.species) query.species={ $regex: filters.species, $options: "i" };;
     if(filters.age) query.age=Number(filters.age);
     if(filters.gender) query.gender=filters.gender;
-    if(filters.breed) query.breed=filters.breed;
+    if(filters.breed) query.breed={ $regex: filters.breed, $options: "i" };
 
     const result=await pets.find(query);
     if(!result) return res.status(404).json({message:"data not found"});
+
+    await redis.setEx("searchCache",600,JSON.stringify(result));
     res.status(200).json(result);
   }
   catch(error){
