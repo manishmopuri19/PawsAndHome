@@ -67,7 +67,9 @@ document.getElementById("searchBtn").addEventListener('click',async (e)=>{
     }
 });
 
-
+document.getElementById("resetFilters").addEventListener('click',async()=>{
+    document.getElementById("filterBar").onreset();
+})
 //get A specific pet
 
 // document.addEventListener("click", e => {
