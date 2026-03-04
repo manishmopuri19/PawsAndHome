@@ -67,9 +67,17 @@ document.getElementById("searchBtn").addEventListener('click',async (e)=>{
     }
 });
 
-document.getElementById("resetFilters").addEventListener('click',async()=>{
-    document.getElementById("filterBar").onreset();
-})
+document.getElementById("resetFilters").addEventListener('click', () => {
+    // 1. Manually clear the inputs
+    document.getElementById("searchInput").value = "";
+    document.getElementById("speciesFilter").value = "all";
+    document.getElementById("ageFilter").value = "";
+    document.getElementById("genderFilter").value = "all";
+
+    // 2. Re-fetch all pets to reset the view
+    // Assuming you have a function like fetchAllPets() in your uiScript.js
+    location.reload(); // Quickest way to reset the state, or call your fetch function
+});
 //get A specific pet
 
 // document.addEventListener("click", e => {
