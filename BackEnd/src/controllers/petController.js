@@ -68,33 +68,47 @@ export const searchByFilters=async(req,res)=>{
   }
 };
 
-//getting All the pet's available
 
-export const getAllPets= async(req,res)=>{
+export const getAllPets = async (req, res) => {
   try {
-    const available={status:"posted"};
-    
-    const cachePets= await redis.get("all_pets");
+    const available = { status: "posted" };
+    let result = null;
 
-    if(cachePets){
-      return res.status(200).json(JSON.parse(cachePets));
+    
+    if (redis && redis.isOpen) {
+      try {
+        const cachePets = await redis.get("all_pets");
+        if (cachePets) {
+          console.log("Serving from Redis Cache");
+          return res.status(200).json(JSON.parse(cachePets));
+        }
+      } catch (cacheError) {
+       
+        console.error("Redis Get Error:", cacheError);
+      }
     }
-    
-    const petsList =await pets.find(available).select(" _id name species age breed images gender");
 
+    const petsList = await pets.find(available).select("_id name species age breed images gender");
     
-    if(!result) return res.status(404).json({message:"data not found"});
-    const result=petsList.map(pet=>({petId:pet._id,
-      name:pet.name,age:pet.age,breed:pet.breed,images:pet.images,
+    result = petsList.map(pet => ({
+      petId: pet._id,
+      name: pet.name,
+      age: pet.age,
+      breed: pet.breed,
+      images: pet.images,
     }));
 
-    await redis.setEx("all_pets", 3600, JSON.stringify(result));
+   
+    if (redis && redis.isOpen && result.length > 0) {
+      await redis.setEx("all_pets", 3600, JSON.stringify(result));
+    }
 
     return res.status(200).json(result);
   } catch (error) {
-    return res.status(500).json({message:error});
+    console.error("Controller Error:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
-}
+};
 
 //getting specific animal data
 export const getSpecificPet=async(req,res)=>{
