@@ -51,21 +51,22 @@ export const createPet = async (req, res) => {
 export const searchByFilters=async(req,res)=>{
  const { species, age, gender, breed } = req.query;
 
-
-  const searchCache=`search${JSON.parse(filters)}`;
-
+const searchCacheKey = `search:${JSON.stringify(req.query)}`;
+ 
+try{
   if(redis && redis.isOpen){
-    try{
-      const result =await redis.get(searchCache);
+    
+      const result =await redis.get(searchCacheKey);
 
       if(result){
         res.status(200).json(JSON.parse(result));
       }
     }
+  }
     catch(error){
       console.log(error);
     }
-  }
+  
   
  let query = { status: "posted" };
         if (species) query.species = { $regex: new RegExp(species, "i") };
