@@ -5,14 +5,18 @@ import docRouter from "./routers/docRouter.js";
 import userRouter from "./routers/userRouter.js";
 import contactRouter from "./routers/contactRouter.js";
 import cors from "cors";
+import { connectRedis } from "./config/redisconfig.js";
+
 const app = express();
 
+connectRedis();
 
 app.use(cors({
   origin: [
     "https://pawsandhomes.netlify.app"
   ]
 }));
+
 
 
 // Middleware

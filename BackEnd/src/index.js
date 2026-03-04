@@ -1,15 +1,18 @@
-import dotenv from "dotenv";
-dotenv.config();
+import "dotenv/config"; // Shortcut to load env immediately
 import app from "./app.js";
 import connectDB from "./config/database.js";
 import { initCloudinary } from "./config/cloudinary.js";
-initCloudinary();
+import { connectRedis } from "./config/redisconfig.js";
 
 const PORT = process.env.PORT || 8000;
 
 const startServer = async () => {
     try {
+        initCloudinary();
+        
+        // Connect to databases BEFORE starting the server
         await connectDB();
+        await connectRedis(); 
 
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);

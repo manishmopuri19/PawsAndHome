@@ -1,3 +1,4 @@
+import { redis } from "../config/redisconfig.js";
 import {pets} from "../model/pets.js";
 import {users} from "../model/users.js";
 
@@ -73,12 +74,21 @@ export const getAllPets= async(req,res)=>{
   try {
     const available={status:"posted"};
     
+    const cachePets= await redis.get("all_pets");
+
+    if(cachePets){
+      return res.status(200).json(JSON.parse(cachePets));
+    }
+    
     const petsList =await pets.find(available).select(" _id name species age breed images gender");
 
+    
+    if(!result) return res.status(404).json({message:"data not found"});
     const result=petsList.map(pet=>({petId:pet._id,
       name:pet.name,age:pet.age,breed:pet.breed,images:pet.images,
     }));
-    if(!result) return res.status(404).json({message:"data not found"});
+
+    await redis.setEx("all_pets", 3600, JSON.stringify(result));
 
     return res.status(200).json(result);
   } catch (error) {
