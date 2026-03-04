@@ -74,9 +74,8 @@ document.getElementById("resetFilters").addEventListener('click', () => {
     document.getElementById("ageFilter").value = "";
     document.getElementById("genderFilter").value = "all";
 
-    // 2. Re-fetch all pets to reset the view
-    // Assuming you have a function like fetchAllPets() in your uiScript.js
-    location.reload(); // Quickest way to reset the state, or call your fetch function
+ 
+     
 });
 //get A specific pet
 
