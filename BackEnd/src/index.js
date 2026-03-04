@@ -1,4 +1,4 @@
-import "dotenv/config"; // Shortcut to load env immediately
+import "dotenv/config"; 
 import app from "./app.js";
 import connectDB from "./config/database.js";
 import { initCloudinary } from "./config/cloudinary.js";
@@ -10,7 +10,6 @@ const startServer = async () => {
     try {
         initCloudinary();
         
-        // Connect to databases BEFORE starting the server
         await connectDB();
         await connectRedis(); 
 
