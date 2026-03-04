@@ -49,7 +49,8 @@ export const createPet = async (req, res) => {
 
 //searh by filters
 export const searchByFilters=async(req,res)=>{
-  const filters = req.query; 
+ const { species, age, gender, breed } = req.query;
+
 
   const searchCache=`search${JSON.parse(filters)}`;
 
@@ -65,14 +66,14 @@ export const searchByFilters=async(req,res)=>{
       console.log(error);
     }
   }
+  
+ let query = { status: "posted" };
+        if (species) query.species = { $regex: new RegExp(species, "i") };
+        if (breed) query.breed = { $regex: new RegExp(breed, "i") };
+        if (gender) query.gender = gender;
+        if (age && !isNaN(age)) query.age = Number(age);
   try{
     let query={status:"posted"};
-
-    if(filters.species) query.species={ $regex: filters.species, $options: "i" };;
-    if(filters.age) query.age=Number(filters.age);
-    if(filters.gender) query.gender=filters.gender;
-    if(filters.breed) query.breed={ $regex: filters.breed, $options: "i" };
-
     const result=await pets.find(query);
     if(!result) return res.status(404).json({message:"data not found"});
 
