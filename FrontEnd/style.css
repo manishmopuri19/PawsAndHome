@@ -1048,3 +1048,51 @@ nav {
     font-size: 0.85rem;
     margin-top: auto; 
 }
+
+/* Container for buttons */
+#userdocGrid .dashboard-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+}
+
+/* Base button styling */
+#userdocGrid .dashboard-actions button {
+    flex: 1;
+    padding: 8px 5px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Edit Button Styling */
+#userdocGrid .edit-btn {
+    background: #f0f7ff;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+#userdocGrid .edit-btn:hover {
+    background: #007bff;
+    color: #fff;
+}
+
+/* Delete Button Styling */
+#userdocGrid .delete-btn {
+    background: #fff5f5;
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+}
+
+#userdocGrid .delete-btn:hover {
+    background: #ff4d4d;
+    color: #fff;
+}

@@ -91,24 +91,34 @@ export const renderUserPosts = (containerId, limit = null, userPets = []) => {
         </div>
     `}).join('');
 };
-export const  renderUserpostedDoc=(containerId,limit=null,fetchedData=[])=> {
+export const renderUserpostedDoc = (containerId, limit = null, fetchedData = []) => {
     const container = document.getElementById(containerId);
     if (!container) return;
+    
     const docsData = limit ? fetchedData.slice(0, limit) : fetchedData;
-    container.innerHTML = docsData.map(doc => `
-        <div class="doc-item-card">
+    
+    container.innerHTML = docsData.map(doc => {
+        const docId = doc._id || doc.id;
+        return `
+        <div class="doc-item-card" id="doc-${docId}">
             <div class="doc-cover">
                 <img src="${doc.image}" alt="${doc.title}">
-                <div class="doc-type-badge"><i class="fas ${doc.icon}"></i></div>
+                <div class="doc-type-badge"><i class="fas ${doc.icon || 'fa-file-alt'}"></i></div>
             </div>
             <div class="doc-body">
                 <h3>${doc.title}</h3>
                 <p>${doc.description}</p>
-               <a href="${doc.document}" target="_blank" class="btn-doc" style="text-decoration: none; display: inline-block;">
-                View Document
-            </a>
-             
+                <a href="${doc.document}" target="_blank" class="btn-doc">View Document</a>
+                
+                <div class="dashboard-actions">
+                    <button class="edit-btn" onclick="editDoc('${docId}')">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="delete-btn" onclick="deleteDoc('${docId}')">
+                        <i class="fas fa-trash"></i> Remove
+                    </button>
+                </div>
             </div>
         </div>
-    `).join('');
-}
+    `}).join('');
+};
