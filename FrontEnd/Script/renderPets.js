@@ -65,7 +65,7 @@ export const renderUserAdoptions=(containerId,limit=null,fetchedData=[])=> {
 }
 
 //user posted pets
-export const renderUserPosts = (containerId,limit=null, userPets = []) => {
+export const renderUserPosts = (containerId, limit = null, userPets = []) => {
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -76,24 +76,21 @@ export const renderUserPosts = (containerId,limit=null, userPets = []) => {
 
     container.innerHTML = userPets.map(pet => {
         const petId = pet.petId || pet._id;
+        // Cleaned up template for dashboard use
         return `
        <div class="pet-card" id="pet-${petId}">
             <img src="${pet.images}" alt="${pet.name}">
-            
-            <span class="status-badge status-${status}">${pet.status || 'Active'}</span>
-            
-            <h3>${pet.name}</h3>
-            <p>${pet.breed} • ${pet.age}</p>
-            
-            <div class="dashboard-actions" style="margin-top: auto; padding-top: 15px;">
-                <button class="edit-btn" onclick="openEditModal('${petId}')">Edit</button>
-                <button class="delete-btn" onclick="confirmDelete('${petId}')">Remove</button>
+            <div class="pet-info">
+                <h3>${pet.name}</h3>
+                <p>${pet.breed} • ${pet.age}</p>
+                <div class="dashboard-actions">
+                    <button class="edit-btn" onclick="openEditModal('${petId}')">Edit</button>
+                    <button class="delete-btn" onclick="confirmDelete('${petId}')">Remove</button>
+                </div>
             </div>
         </div>
     `}).join('');
 };
-
-
 export const  renderUserpostedDoc=(containerId,limit=null,fetchedData=[])=> {
     const container = document.getElementById(containerId);
     if (!container) return;

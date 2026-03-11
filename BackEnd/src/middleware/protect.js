@@ -23,6 +23,6 @@ export const protect = async (req, res, next) => {
     req.user = userExist;
     next();
   } catch (error) {
-    res.status(401).json({ message: "Not authorized" });
+     return res.status(401).json({ message: "Not authorized" });
   }
 };

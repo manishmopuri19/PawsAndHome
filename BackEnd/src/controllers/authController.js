@@ -27,7 +27,7 @@ export const registration=async(req,res)=>{
 
     const user=await users.create({name,email,mobile,password:hashPassword,role:allowedRoles.includes(role)? role:undefined});
     
-    return res.status(200).json({message:"user created successfully",user:{
+    return res.status(201).json({message:"user created successfully",user:{
         id:user._id,
         name:user.name,
         email:user.email
@@ -47,7 +47,7 @@ export const login=async(req,res)=>{
         return res.status(401).json({message:"missing fields!!!"});
     }
 
-    const user=await users.findOne({email}).select("+password");;
+    const user=await users.findOne({email}).select("+password");
 
     if(!user){
         return res.status(401).json({message:"user not found"});

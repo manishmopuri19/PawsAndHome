@@ -953,3 +953,52 @@ nav {
         justify-content: space-between;
     }
 }
+
+/* Specifically target the dashboard grid to ensure 3 columns */
+.manage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+/* Ensure the dashboard pet cards are compact */
+#userpostedGrid .pet-card {
+    padding: 12px;
+    background: #fff;
+    border-radius: 15px;
+    border: 1px solid #eee;
+}
+
+#userpostedGrid .pet-card img {
+    height: 150px; /* Force a smaller, consistent height */
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#userpostedGrid .pet-card h3 {
+    font-size: 1rem;
+    margin: 10px 0 5px 0;
+}
+
+/* Style the action buttons (Edit/Remove) to fit side-by-side */
+.dashboard-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.dashboard-actions button {
+    flex: 1;
+    padding: 8px;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: #fff0f0;
+    color: #ff4b2b;
+    border: 1px solid #ff4b2b;
+}

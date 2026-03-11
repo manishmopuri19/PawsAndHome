@@ -31,10 +31,10 @@ const usersSchema=new mongoose.Schema(
             default:false
         },
 
-        petsAdopted:{
+        petsAdopted:[{
             type:mongoose.Schema.Types.ObjectId,
-            rel:"pets"
-        }
+            ref:"pets"
+        }]
  
     },
 
