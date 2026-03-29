@@ -1201,79 +1201,76 @@ nav {
         order: -1;
     }
 }
-/* Update your CSS file with these changes */
-
+/* Card container */
 .pet-card {
-    /* Set the maximum width for the card so it doesn't get huge */
-    max-width: 320px; 
-    
-    /* Ensure the card has a white background with neat rounded corners */
+    max-width: 320px;
     background: #fff;
     border-radius: 20px;
-    
-    /* Use flexbox to organize content vertically */
+
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* This keeps the image corners rounded */
+    overflow: hidden;
+
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* Make sure the main image can actually show the full head vertically */
+/* Image - FULL IMAGE visible (no crop like Tara card) */
 .pet-card img {
     width: 100%;
-    
-    /* The FIX: Set a taller aspect ratio. 3 width units to 4 height units. */
-    /* This vertical ratio will fit Bruno's head much better. */
-    aspect-ratio: 3 / 4; 
-    
-    /* The other essential property: Cover ensures the photo fills the */
-    /* 3:4 box by zooming, not stretching. */
-    object-fit: cover;
-    
-    /* Position the photo from the top down, prioritizing the head. */
-    object-position: center top; 
+    height: auto;          /* Let image keep original ratio */
+    max-height: 300px;     /* Optional: prevents too tall images */
+    object-fit: contain;   /* Show full image */
 }
 
-/* Ensure neat padding and centering below the image */
+/* Info section */
 .pet-info {
     padding: 18px 15px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
+/* Pet name */
 .pet-info h3 {
     margin: 0;
-    font-size: 1.5rem; /* ~24px, bigger and bold */
+    font-size: 1.5rem;
     color: #333;
 }
 
+/* Pet details */
 .pet-info p {
     margin: 8px 0 15px 0;
-    font-size: 1.1rem; /* ~18px, easy to read */
+    font-size: 1.1rem;
     color: #666;
 }
 
-/* Update your adopt button with the neat rounded corners */
+/* Adopt button */
 .adopt-btn.card-btn {
     width: 100%;
-    max-width: 260px; /* Optional: cap button width */
+    max-width: 260px;
+
     padding: 12px 0;
     font-size: 1rem;
     font-weight: bold;
+
     color: #fff;
-    background-color: #ff385c; /* Recreating that nice pink-red */
+    background-color: #ff385c;
+
     border: none;
-    border-radius: 25px; /* Creates that 'pill' shape */
+    border-radius: 25px;
+
     cursor: pointer;
     transition: background 0.2s ease, transform 0.1s ease;
 }
 
+/* Hover effect */
 .adopt-btn.card-btn:hover {
     background-color: #e31c5f;
 }
 
+/* Click effect */
 .adopt-btn.card-btn:active {
     transform: scale(0.98);
 }
