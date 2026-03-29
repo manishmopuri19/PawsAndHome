@@ -116,7 +116,7 @@ export const getAllPets=async(req, res) => {
 
    
     if (redis && redis.isOpen && result.length>0) {
-      await redis.setEx("all_pets", 3600, JSON.stringify(result));
+      await redis.setEx("all_pets", 600, JSON.stringify(result));
     }
 
     return res.status(200).json(result);
