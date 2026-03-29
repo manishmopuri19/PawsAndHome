@@ -110,13 +110,11 @@ export const reportAdmin=async(req,res)=>{
 
 //delete a pet
 export const deletePet=async(req,res)=>{
-    const pet={
-        petId:req.petId,
-        postedBy:req.user._id
-    };
+   const petId = req.params.id;
+
 
    try {
-    const result=await pets.findOneAndDelete(pet);
+    const result=await pets.findOneAndDelete(petId);
 
     if(!result) return res.status(401).json({message:"unauthorized"});
 

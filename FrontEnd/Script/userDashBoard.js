@@ -294,7 +294,7 @@ document.addEventListener("click", async (e) => {
 async function deletePet(petId) {
     try { 
         // include the ID in the URL, e.g., `${API_URL}/deletePet/${petId}`
-        const res = await fetch(`${API_URL}/deletePet/${petId}`, {
+        const res = await fetch(`${API_URL}/userDashboard/deletePet/${petId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem('token')}`,
