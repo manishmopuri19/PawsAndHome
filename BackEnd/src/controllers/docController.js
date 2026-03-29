@@ -38,7 +38,7 @@ if (req.files?.docs) {
         document:documentUrls,
         uploadedBy:req.user._id,
         category:allowedCatogires.includes(category)? category:undefined,
-        status:"pending"
+        status:"posted"
     });
 
     return res.status(200).json(doc);
