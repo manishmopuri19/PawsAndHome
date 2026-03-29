@@ -316,7 +316,7 @@ async function deletePet(petId) {
                 petCard.remove();
                 
                 // Check if the container is now empty to show the "no posts" message
-                const container = document.querySelector('pet-card'); 
+                const container = document.querySelector('manage-pets-sec'); 
                 if (container && container.children.length === 0) {
                     container.innerHTML = `<p class="no-posts">You haven't posted any pets yet.</p>`;
                 }

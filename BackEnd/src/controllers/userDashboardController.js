@@ -114,7 +114,7 @@ export const deletePet=async(req,res)=>{
 
 
    try {
-    const result=await pets.findOneAndDelete(petId);
+    const result=await pets.findOneAndDelete({ _id: petId });
 
     if(!result) return res.status(401).json({message:"unauthorized"});
 
