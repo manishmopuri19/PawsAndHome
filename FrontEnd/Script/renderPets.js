@@ -85,7 +85,7 @@ export const renderUserPosts = (containerId, limit = null, userPets = []) => {
                 <p>${pet.breed} • ${pet.age}</p>
                 <div class="dashboard-actions">
                     <button class="edit-btn" onclick="openEditModal('${petId}')">Edit</button>
-                    <button class="delete-btn" onclick="confirmDelete('${petId}')">Remove</button>
+                    <button class="delete-pet-btn" data-id="${petId}">Remove</button>
                 </div>
             </div>
         </div>

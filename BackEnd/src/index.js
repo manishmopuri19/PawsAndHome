@@ -3,7 +3,6 @@ import app from "./app.js";
 import connectDB from "./config/database.js";
 import { initCloudinary } from "./config/cloudinary.js";
 import { connectRedis } from "./config/redisconfig.js";
-
 const PORT = process.env.PORT || 8000;
 
 const startServer = async () => {
@@ -23,3 +22,4 @@ const startServer = async () => {
 };
 
 startServer();
+

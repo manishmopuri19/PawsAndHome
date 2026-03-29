@@ -106,3 +106,24 @@ export const reportAdmin=async(req,res)=>{
         res.status(500).json({message:"server error"});
     }
 }
+
+
+//delete a pet
+export const deletePet=async(req,res)=>{
+    const pet={
+        petId:req.petId,
+        postedBy:req.user._id
+    };
+
+   try {
+    const result=await pets.findOneAndDelete(pet);
+
+    if(!result) return res.status(401).json({message:"unauthorized"});
+
+    return res.status(200).json({message:"deleted successfully"});
+
+   } catch (error) {
+    return res.status(500).json({message:"server error"});
+   }
+
+}

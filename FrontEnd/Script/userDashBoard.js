@@ -280,3 +280,51 @@ export async function userpostDoc(){
         console.log(error);
     }
 }
+
+document.addEventListener("click", async (e) => {
+    if (e.target.classList.contains("delete-pet-btn")) {
+        const petId = e.target.dataset.id;
+        const isConfirmed = confirm("Are you sure you want to remove this pet? This action cannot be undone.");
+        
+        if (isConfirmed) {
+            await deletePet(petId);
+        }
+    }
+});
+async function deletePet(petId) {
+    try { 
+        // include the ID in the URL, e.g., `${API_URL}/deletePet/${petId}`
+        const res = await fetch(`${API_URL}/deletePet/${petId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (!res.ok) {
+            throw new Error("Failed to delete pet");
+        }
+
+        // 2. Remove the element from the page without reloading
+        const petCard = document.getElementById(`pet-${petId}`);
+        if (petCard) {
+            petCard.style.opacity = '0';
+            petCard.style.transition = '0.3s ease';
+            
+            setTimeout(() => {
+                petCard.remove();
+                
+                // Check if the container is now empty to show the "no posts" message
+                const container = document.querySelector('pet-card'); 
+                if (container && container.children.length === 0) {
+                    container.innerHTML = `<p class="no-posts">You haven't posted any pets yet.</p>`;
+                }
+            }, 300);
+        }
+
+    } catch (error) {
+        console.error("Delete error:", error);
+        alert("Could not delete the pet. Please try again later.");
+    }
+}
