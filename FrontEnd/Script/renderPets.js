@@ -27,7 +27,7 @@ export const  renderFullDocs=(containerId,limit=null,fetchedData=[])=> {
         <div class="doc-item-card">
             <div class="doc-cover">
                 <img src="${doc.image}" alt="${doc.title}">
-                <div class="doc-type-badge"><i class="fas ${doc.icon}"></i></div>
+                <div class="doc-type-badge"><i class="fas ${doc.icon || 'fa-file-alt'}"></i></div>
             </div>
             <div class="doc-body">
                 <h3>${doc.title}</h3>
