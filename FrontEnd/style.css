@@ -1201,3 +1201,31 @@ nav {
         order: -1;
     }
 }
+/* Target the container for the image */
+.pet-card img {
+    width: 100%;
+    /* Increase height or set a taller aspect ratio for mobile photos */
+    aspect-ratio: 3 / 4; 
+    object-fit: cover; /* This keeps the photo from stretching */
+    border-radius: 12px 12px 0 0; /* Keeps those curved corners you like */
+    display: block;
+}
+
+.pet-card {
+    display: flex;
+    flex-direction: column;
+    height: auto; /* Allows the card to grow with the content */
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.pet-info {
+    padding: 15px;
+    flex-grow: 1; /* Ensures the info section pushes the button to the bottom */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
