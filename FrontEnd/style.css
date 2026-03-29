@@ -1204,6 +1204,8 @@ nav {
 /* Card container */
 .pet-card {
     max-width: 320px;
+    height: 100%; /* important for equal height */
+
     background: #fff;
     border-radius: 20px;
 
@@ -1214,12 +1216,12 @@ nav {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* Image - FULL IMAGE visible (no crop like Tara card) */
+/* Image */
 .pet-card img {
     width: 100%;
-    height: auto;          /* Let image keep original ratio */
-    max-height: 300px;     /* Optional: prevents too tall images */
-    object-fit: contain;   /* Show full image */
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
 }
 
 /* Info section */
@@ -1230,23 +1232,25 @@ nav {
     flex-direction: column;
     align-items: center;
     text-align: center;
+
+    flex-grow: 1; /* takes remaining space */
 }
 
-/* Pet name */
+/* Name */
 .pet-info h3 {
     margin: 0;
     font-size: 1.5rem;
     color: #333;
 }
 
-/* Pet details */
+/* Details */
 .pet-info p {
     margin: 8px 0 15px 0;
     font-size: 1.1rem;
     color: #666;
 }
 
-/* Adopt button */
+/* Button */
 .adopt-btn.card-btn {
     width: 100%;
     max-width: 260px;
@@ -1263,14 +1267,16 @@ nav {
 
     cursor: pointer;
     transition: background 0.2s ease, transform 0.1s ease;
+
+    margin-top: auto; /* 🔥 THIS FIXES BUTTON POSITION */
 }
 
-/* Hover effect */
+/* Hover */
 .adopt-btn.card-btn:hover {
     background-color: #e31c5f;
 }
 
-/* Click effect */
+/* Click */
 .adopt-btn.card-btn:active {
     transform: scale(0.98);
 }
